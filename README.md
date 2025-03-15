@@ -108,6 +108,6 @@ H0: My model is fair, and any difference in precision is due to random chance.
 
 Ha: My model is biased, the model performs significantly differently depending on the patch. 
 
-The resulting p-value I got was 0.2072. This is greater than the alpha level of 0.05, therefore, we fail to reject the null hypothesis, and thus, my model according to this test is fair. 
+The resulting p-value I got was 0.928. This is greater than the alpha level of 0.05, therefore, we fail to reject the null hypothesis, and thus, my model according to this test is fair. 
 
 ---
