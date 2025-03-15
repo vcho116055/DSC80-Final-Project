@@ -80,4 +80,34 @@ P-Value: 0.0
 
 Based on the resulting p-value, the null hypothesis should be rejected. According to this test, there is sufficient evidence to say that one of either CS difference of kill difference at 10 minutes has a significantly stronger effect on winning. 
 
+## Framing a Prediction Problem
+
+Prediction Problem: Is it possible to predict a win or a loss based on data within the first 10 minutes? 
+
+Type: Binary classification problem, as I am trying to classify if a given set of values will result in a win or a loss, which is binary as there are only two possible results. 
+
+The response variable in this problem will be result, as it is the column that represents a win or a loss. The metric I believe is best is accuracy, as in the dataset, there are similar numbers of wins and losses. 
+
+## Baseline Model 
+
+My baseline model utilizes StandardScaler in order to normalize the greater values of CS compared to kills as well as RandomForest as it is suited for binary classification and gives a binary win or loss result, which is necessary to my goal of being able to simply predict a win with relatively high accuracy. My features were csdiffat10 and killdiffat10, both of which are quantitative variables. The model was evaluated using accuracy, overall getting a 62.9% accuracy. While I believe that the model is good at the current moment, it can definitely be improved with additional features. 
+
+## Final Model 
+
+In my final model, I added the two features, xpdiffat10 as well as golddiffat10. As XP and gold are the two main resources in League of Legends, I believed that these would have an extremely high impact on a win or a loss. While CS and kill differences do paint some of the picture, I believe that XP and gold will help fill in the gaps. Additionally, these features will need to be before 10 minutes in order to address my prediction problem. 
+
+The modeling algorithm I ended up using was StandardScaler. As mentioned in the Baseline Model portion, I wanted to be able to see a direct prediction of a win or a loss, so I saw no need to switch off of it. The best performing hyperparameters were a max_depth of 10, min_samples_split of 5, an n_estimators of 300, and a random_state of 1. 
+
+Overall, I noticed a slight improvement of performance of approximately 5%, meaning that my model predicted the correct match result 67.89% of the time. 
+
+## Fairness Analysis 
+
+For my fairness analysis, I want to look at the fairness between different patches. League of Legends is updated on a biweekly basis, and with such frequency, it is worth considering to see if there is any bias. Group A will be patches 14.01 to 14.12 while group B will be patches 14.13 to 14.23. Since my model is a classifier, I will use precision as the evaluation metric. 
+
+H0: My model is fair, and any difference in precision is due to random chance. 
+
+Ha: My model is biased, the model performs significantly differently depending on the patch. 
+
+The resulting p-value I got was 0.2072. This is greater than the alpha level of 0.05, therefore, we fail to reject the null hypothesis, and thus, my model according to this test is fair. 
+
 ---
